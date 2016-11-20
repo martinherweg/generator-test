@@ -1,0 +1,10 @@
+{% extends "layout/_layout.twig" %}
+
+{% block content %}
+    <h1 class="shadow">Doh!</h1>
+    <h2 class="error_message">Method not allowed:</h2>
+    <pre>{{ method }} @ {{ uri }}</pre>
+
+     <!-- Labeled Message -->
+     {{ dbg_render() }}
+{% endblock %}

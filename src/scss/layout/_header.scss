@@ -1,0 +1,174 @@
+/*------------------------------------*\
+    Author: Martin Herweg
+    Description: CSS for .header
+    #header
+\*------------------------------------*/
+
+.header {
+  box-shadow: 0 5px 15px rgba(black, .4);
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 15px;
+  position: relative;
+  z-index: 1000;
+
+  @include media('>420px') {
+    padding-left: 40px;
+  }
+}
+
+.header__logo {
+  display: inline-block;
+  min-width: 100px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+
+  @include media('>420px') {
+    padding-top: 10px;
+  }
+
+  img {
+    max-height: 55px;
+  }
+}
+
+.header__right {
+  display: flex;
+}
+
+.header__newsletter {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex-wrap: wrap;
+  text-align: center;
+
+  @include media('>=#{$newsletter_in_footer}') {
+    order: inherit;
+    text-align: left;
+  }
+
+  @include media('<=#{$newsletter_in_footer}') {
+    margin-bottom: 100px;
+    margin-top: 40px;
+    max-width: 100%;
+    font-size: rem-calc(18);
+    line-height: 1.2;
+  }
+}
+
+.header__newsletter_text {
+  @include media('<=#{$newsletter_in_footer}') {
+    flex-basis: 100%;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+}
+
+#form__newsletter {
+  @include media('<=#{$newsletter_in_footer}') {
+    margin: auto;
+    max-width: 100%;
+  }
+}
+
+.form__field_group {
+  display: flex;
+
+  @include media('>#{$newsletter_in_footer}') {
+    margin-left: 10px;
+  }
+}
+
+.form__submit {
+  border: 0;
+  background: color('corporate', 'base');
+  color: #fff;
+  display: flex;
+
+  .icon {
+    margin: auto;
+    max-width: 26px;
+    max-height: 16px;
+    width: 20px;
+  }
+}
+
+.header__testlounge {
+  display: flex;
+  background: color('corporate', 'base');
+  align-items: center;
+  padding: 5px 15px;
+  margin-left: 30px;
+
+  @include media('<=620px') {
+    width: 100%;
+    margin-left: -40px;
+    margin-right: -40px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    justify-content: center;
+  }
+}
+
+.form__field {
+  max-width: 85%;
+
+  @include media('>#{$newsletter_in_footer}') {
+    max-width: 100%;
+  }
+}
+
+.form__field:focus:invalid, {
+    background-color: rgba(255,210,210,1);
+}
+
+.form__field:focus:valid, {
+    background-color: rgba(210,255,200,1);
+}
+
+::-webkit-validation-bubble-message { display: none; }
+
+#messagebox {
+  display:inline;
+  padding:10px 5px;
+  background-color: rgba(210,255,200,1);
+  position: absolute;
+  right: 0px;
+  width: 100%;
+  top: 60px;
+  border: solid 2px rgba(50,150,50,1);
+  padding:10px 5px;
+  transition: all .2s;
+  transform: translateY(-10px);
+  text-align: center;
+  color: rgba(100,200,100,1);
+  opacity : 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+#messagebox.success {
+  background-color: rgba(210,255,200,1);
+  color: rgba(50,150,50,1);
+  border: solid 2px rgba(50,150,50,1);
+}
+
+#messagebox.error {
+  background-color: rgba(255,210,210,1);
+  color: rgba(155,110,110,1);
+  border: solid 2px rgba(155,110,110,1);
+}
+
+#messagebox.visible {
+  opacity: 1;
+  -webkit-box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
+  transform: translateY(0px);
+}
+
+#newsletterIcon.goforit {
+  padding-left:26px;
+  transition: all .2s;
+}

@@ -1,0 +1,111 @@
+$ms-base: rem-calc(16);
+$ms-ratio: 1.337; // calculated by body line height / body font size
+$base-line-height: $ms-base * $ms-ratio; // base font size * line height
+$verticalRythm: $ms-ratio + rem;
+
+/*------------------------------------*\
+    $Typography Rules
+\*------------------------------------*/
+@font-face {
+    font-family: 'rb_thesans_condregular';
+    src: url('../fonts/tsncd_5_-webfont.eot');
+    src: url('../fonts/tsncd_5_-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/tsncd_5_-webfont.woff') format('woff'), url('../fonts/tsncd_5_-webfont.svg#rb_thesans_condregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'rb_thesans_conditalic';
+    src: url('../fonts/tsncd_5i-webfont.eot');
+    src: url('../fonts/tsncd_5i-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/tsncd_5i-webfont.woff') format('woff'), url('../fonts/tsncd_5i-webfont.svg#rb_thesans_conditalic') format('svg');
+    font-weight: normal;
+    font-style: normal; }
+
+@font-face {
+    font-family: 'rb_thesans_condbold';
+    src: url('../fonts/tsncd_7_-webfont.eot');
+    src: url('../fonts/tsncd_7_-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/tsncd_7_-webfont.woff') format('woff'), url('../fonts/tsncd_7_-webfont.svg#rb_thesans_condbold') format('svg');
+    font-weight: normal;
+    font-style: normal; }
+
+@font-face {
+    font-family: 'rb_thesans_condbold_italic';
+    src: url('../fonts/tsncd_7i-webfont.eot');
+    src: url('../fonts/tsncd_7i-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/tsncd_7i-webfont.woff') format('woff'), url('../fonts/tsncd_7i-webfont.svg#rb_thesans_condbold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal; }
+
+/* REGULAR */
+@font-face {
+    font-family: 'rb_thesansregular';
+    src: url('../fonts/thesn5_-webfont.eot');
+    src: url('../fonts/thesn5_-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/thesn5_-webfont.woff') format('woff'), url('../fonts/thesn5_-webfont.svg#rb_thesans_condregular') format('svg');
+    font-weight: normal;
+    font-style: normal; }
+
+@font-face {
+    font-family: 'rb_thesans_italic';
+    src: url('../fonts/thesn5i-webfont.eot');
+    src: url('../fonts/thesn5i-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/thesn5i-webfont.woff') format('woff'), url('../fonts/thesn5i-webfont.svg#rb_thesans_conditalic') format('svg');
+    font-weight: normal;
+    font-style: normal; }
+
+@font-face {
+    font-family: 'rb_thesansbold';
+    src: url('../fonts/thesn7_-webfont.eot');
+    src: url('../fonts/thesn7_-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/thesn7_-webfont.woff') format('woff'), url('../fonts/thesn7_-webfont.svg#rb_thesans_condbold') format('svg');
+    font-weight: normal;
+    font-style: normal; }
+
+@font-face {
+    font-family: 'rb_thesansbold_italic';
+    src: url('../fonts/thesn7i-webfont.eot');
+    src: url('../fonts/thesn7i-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/thesn7i-webfont.woff') format('woff'), url('../fonts/thesn7i-webfont.svg#rb_thesans_condbold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal; }
+
+
+$fontFamilies: (
+    'main': ('rb_thesansregular', Georgia, "Times New Roman", Times, serif),
+    'headline': ('Lato', Helvetica, Arial, sans-serif),
+    'bold': ('rb_thesansbold', Helvetica, Arial, sans-serif),
+);
+
+$fontSizes: (
+    'main': (
+        'bodycopy': $ms-base
+    ),
+    'headlines': (
+        'h1': ms(6),
+        'h2': ms(5),
+        'h3': ms(4),
+        'h4': ms(3),
+        'h5': ms(2),
+        'h6': ms(1)
+    )
+);
+
+$fontLineHeights: (
+    'main': (
+        'bodycopy': $base-line-height
+    ),
+    'headlines': (
+        'h1': ($base-line-height * 4),
+        'h2': ($base-line-height * 4),
+        'h3': ($base-line-height * 3),
+        'h4': $base-line-height,
+        'h5': $base-line-height,
+        'h6': $base-line-height
+    )
+);
+
+$fontWeights: (
+    'main': (
+        'regular': 400,
+        'bold': 800
+    ),
+    'headlines': (
+        'regular': 400,
+        'bold': 800
+    )
+);

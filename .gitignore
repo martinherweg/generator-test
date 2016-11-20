@@ -1,0 +1,11 @@
+###############################
+###   Files to be ignored   ###
+###############################
+
+
+/dist
+/.idea
+/DOCUMENTATION.md
+/node_modules
+/npm-debug.log
+/README.md

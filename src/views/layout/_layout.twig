@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Zoneluz</title>
+    {% include 'parts/header/_metatags.twig' %}
+    {% include 'parts/header/_favicons.twig' %}
+    <link rel="stylesheet" href="assets/css/style.css">
+    {{ dbg_renderHead() }}
+</head>
+<body>
+
+{% block content %}
+
+{% endblock %}
+
+<script>
+    var siteUrl = '{{ siteUrl }}';
+
+</script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

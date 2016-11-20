@@ -1,0 +1,130 @@
+{
+    
+    "proxy"      : "generator-new.dev",
+    
+    "compiler"   : "none",
+    "projectType": "HTML Protoypes",
+    "files"      : {
+        "jsApp": {
+        "srcName": "app.js",
+        "distName": "app.js"
+        },
+        "jsCombinePlugins"        : [
+        ],
+        "jsCombinePluginsFilename": "plugins.min.js",
+        "jsCopyScripts"           : [
+        ]
+    },
+    "favicon": {
+        "appName"       : "My App",
+        "appDescription": "This is my Application",
+        "developerName" : "Zone GmbH",
+        "developerURL"  : "https://zonedigital.com",
+        "background"    : "#020307",
+        "path"          : "favicons",
+        "logging"       : false,
+        "online"        : false,
+        "icons"         : {
+            "android"     : true,
+            "appleIcon"   : true,
+            "appleStartup": true,
+            "coast"       : true,
+            "favicons"    : true,
+            "firefox"     : true,
+            "opengraph"   : false,
+            "twitter"     : false,
+            "windows"     : true,
+            "yandex"      : true
+        }
+    },
+    "modernizr"  : {
+        "options"  : [
+            "setClasses",
+            "addTest"
+        ],
+        "excludeTests": [
+            "hidden"
+        ],
+        "tests"    : [
+            "flexbox",
+            "flexboxlegacy"
+        ]
+    },
+    "minify"     : {
+        "images": {
+            "optimizationLevel": 3,
+            "pngquant": {
+                "quality": "75-88",
+                "speed"  : 4
+            },
+            "progressive": true,
+            "interlaced" : true,
+            "svgoPlugins": [
+                {"cleanupIDs"                : false},
+                {"removeComments"            : true},
+                {"removeViewBox"             : false},
+                {"removeDesc"                : true},
+                {"removeUselessDefs"         : false},
+                {"removeDoctype"             : true},
+                {"removeEmptyText"           : true},
+                {"removeUnknownsAndDefaults" : true},
+                {"removeEmptyContainers"     : true},
+                {"collapseGroups"            : true},
+                {"removeUselessStrokeAndFill": true},
+                {"convertStyleToAttrs"       : true}
+            ]
+    }
+    },
+    "src"        : {
+        "src"      : "src/",
+        "assets"   : "",
+        "views"    : "views/",
+        "systemFiles": "systemFiles/",
+        "css"      : "scss/",
+        "fonts"    : "fonts/",
+        "sounds"    : "sounds/",
+        "js"       : {
+            "base"    : "js/",
+            "mysource": "my-source/",
+            "json"    : "json/"
+        },
+        "favicons": "favicons/",
+        "images"   : {
+            "base"  : "images/",
+            "svg"   : {
+                "base"  : "svg/",
+                "single": "single/",
+                "sprite": "sprite/"
+            },
+            "bitmap": {
+                "cssimages" : "cssimages/",
+                "htmlimages": "htmlimages/"
+            }
+        }
+    },
+    "dist"       : {
+
+        "dist"     : "dist/public/",
+        "views"    : "dist/resources/views/",
+        "systemFiles": "dist/public/",
+        "css"      : "assets/css/",
+        "favicons": "favicons/",
+        "fonts"    : "assets/fonts/",
+        "sounds"    : "assets/sounds/",
+        "js"       : "assets/js/",
+        "images"   : {
+            "base"  : "assets/images/",
+            "svg"   : {
+                "base"  : "svg/",
+                "single": "single/",
+                "sprite": "sprite/"
+            },
+            "bitmap": {
+                "cssimages" : "cssimages/",
+                "htmlimages": "htmlimages/"
+            }
+        }
+    }
+}
+
+
