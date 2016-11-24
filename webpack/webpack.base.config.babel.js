@@ -1,40 +1,42 @@
-const path = require('path');
-const webpack = require('webpack');
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const config = require('./config');
-const utils = require('./utils');
-const projectRoot = path.resolve(__dirname, '../');
-const PUBLIC_PATH = path.join(projectRoot, 'dist/');
-const vueConfig = require('./vue-loader-config');
+import path from 'path';
+import webpack from 'webpack';
+import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
+import webpack_config from './webpack_config';
+import * as utils from './webpack_utils';
 
-module.exports = {
+const projectRoot = path.resolve(__dirname, '../');
+
+export default {
   devtool: 'source-map',
-  context: path.join(projectRoot, 'src'),
+  context: path.join(projectRoot),
   entry: {
-    app: './js/app.js',
+    app: './src/js/app.js',
   },
   output: {
-    path: path.join(PUBLIC_PATH, 'assets/'),
-    publicPath: '/assets/',
+    path: webpack_config.build.assetsRoot,
+    publicPath: process.env.NODE_ENV === 'production' ? webpack_config.build.assetsPublicPath : webpack_config.dev.assetsPublicPath,
     filename: 'js/[name].js',
   },
   resolve: {
-    extensions: ['.js', '.vue'],
+    extensions: ['.js'],
     modules: [path.join(__dirname, '../node_modules')],
     alias: {
-      'vue$': 'vue/dist/vue',
+  
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components'),
     },
   },
+  resolveLoader: {
+    modules: [path.join(__dirname, '../node_modules/')]
+  },
+  externals: {
+    'Modernizr': 'Modernizr'
+  },
   module: {
     rules: [
-      {
-        test: /\.vue$/,
-        loader: 'vue',
-        options: vueConfig,
-      },
+    
+    
       {
         test: /\.js$/,
         loader: 'babel',
@@ -64,7 +66,9 @@ module.exports = {
 
     ],
   },
+
   plugins: [
+  
     new LodashModuleReplacementPlugin(),
     new webpack.LoaderOptionsPlugin({
       options: {

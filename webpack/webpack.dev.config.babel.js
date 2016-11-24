@@ -1,31 +1,30 @@
-const config = require('./config');
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const utils = require('./utils');
-const base_webpack_config = require('./webpack.base.config.babel');
-const html_webpack_plugin = require('html-webpack-plugin');
-const dashboard_plugin = require('webpack-dashboard/plugin');
+import webpack from 'webpack';
+import merge from 'webpack-merge';
+import Dashboard_plugin from 'webpack-dashboard/plugin';
+import webpack_config from './webpack_config';
 
+import * as utils from './webpack_utils';
+import webpack_base_config from './webpack.base.config.babel';
+import './webpack_files_inject';
 
 //add hot-reload related code to entry chunks
-Object.keys(base_webpack_config.entry).forEach(function (name) {
-  base_webpack_config.entry[name] = ['../webpack/dev-client.js'].concat(base_webpack_config.entry[name]);
-})
+Object.keys(webpack_base_config.entry).forEach((name) => {
+  webpack_base_config.entry[name] = ['./webpack/webpack_dev-client.js'].concat(webpack_base_config.entry[name]);
+});
 
-module.exports = merge(base_webpack_config, {
-  module: {
-    loaders: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap }),
-  },
+const css_loaders = utils.cssLoaders();
+webpack_base_config.module.rules.push(css_loaders);
+
+export default merge(webpack_base_config, {
   // eval-source-map is faster for development
   devtool: '#eval-source-map',
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': config.dev.env
+      'process.env': webpack_config.dev.env,
     }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
-    new dashboard_plugin({ port: 3002 }),
+    new Dashboard_plugin({ port: 3002 }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    // https://github.com/ampedandwired/html-webpack-plugin
-  ]
-})
+  ],
+});

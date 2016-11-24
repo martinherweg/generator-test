@@ -1,25 +1,12 @@
 {
     
-    "proxy"      : "generator-new.dev",
-    
-    "compiler"   : "none",
-    "projectType": "HTML Protoypes",
-    "files"      : {
-        "jsApp": {
-        "srcName": "app.js",
-        "distName": "app.js"
-        },
-        "jsCombinePlugins"        : [
-        ],
-        "jsCombinePluginsFilename": "plugins.min.js",
-        "jsCopyScripts"           : [
-        ]
-    },
+    "proxy"      : "", 
+    "projectType": "Craft",
     "favicon": {
         "appName"       : "My App",
         "appDescription": "This is my Application",
-        "developerName" : "Zone GmbH",
-        "developerURL"  : "https://zonedigital.com",
+        "developerName" : "undefined",
+        "developerURL"  : "http://...",
         "background"    : "#020307",
         "path"          : "favicons",
         "logging"       : false,
@@ -76,13 +63,12 @@
     }
     },
     "src"        : {
-        "src"      : "src/",
-        "assets"   : "",
+        "base"      : "src/",
+        "assets"   : "assets/",
         "views"    : "views/",
         "systemFiles": "systemFiles/",
         "css"      : "scss/",
         "fonts"    : "fonts/",
-        "sounds"    : "sounds/",
         "js"       : {
             "base"    : "js/",
             "mysource": "my-source/",
@@ -103,14 +89,13 @@
         }
     },
     "dist"       : {
-
+    
         "dist"     : "dist/public/",
-        "views"    : "dist/resources/views/",
+        "views"    : "dist/templates/",
         "systemFiles": "dist/public/",
         "css"      : "assets/css/",
         "favicons": "favicons/",
         "fonts"    : "assets/fonts/",
-        "sounds"    : "assets/sounds/",
         "js"       : "assets/js/",
         "images"   : {
             "base"  : "assets/images/",

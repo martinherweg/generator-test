@@ -1,102 +1,74 @@
-const path = require('path');
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const config = require('./config');
-const utils = require('./utils');
-const baseWebpackConfig = require('./webpack.base.config.babel.js')
-const vueConfig = require('./vue-loader-config');
-const env = config.build.env;
+import path from 'path';
+import webpack from 'webpack';
+import merge from 'webpack-merge';
+import {execSync as exec} from 'child_process';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import webpack_config from './webpack_config';
+import * as utils from './webpack_utils';
+import webpack_base_config from './webpack.base.config.babel.js';
+import './webpack_files_inject';
+const env = webpack_config.build.env;
 
-const deploy_url = process.env.DEPLOY_URL || 'http://tip-toi.dev/';
+// remove old build files
+exec('rm -rf dist/assets/js/app.* dist/assets/js/manifest.* dist/assets/js/vendor.*')
 
-vueConfig.loaders = {
-  loaders: utils.cssLoaders({
-    sourceMap: config.build.productionSourceMap,
-    extract: true
-  })
-}
+const css_loaders = utils.cssLoaders({ extract: true});
 
-const webpackConfig = merge(baseWebpackConfig, {
-  module: {
-    loaders: utils.styleLoaders({ sourceMap: config.build.productionSourceMap, extract: true })
-  },
-  devtool: config.build.productionSourceMap ? '#source-map' : false,
+webpack_base_config.module.rules.push(css_loaders);
+
+const webpack_prod_config = merge(webpack_base_config, {
+  devtool: webpack_config.build.productionSourceMap ? '#source-map' : false,
   output: {
-    path: config.build.assetsRoot,
-    publicPath: deploy_url,
+    path: webpack_config.build.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js'),
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
-      'process.env': env
+      'process.env': env,
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
+    new webpack.optimize.UglifyJsPlugin(),
     // extract css into its own file
     new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash].css')),
-    // generate dist index.html with correct asset hash for caching.
-    // you can customize output by editing /index.html
-    // see https://github.com/ampedandwired/html-webpack-plugin
-    new HtmlWebpackPlugin({
-      filename: config.build.index,
-      template: './views/welcome.blade.php',
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true
-        // more options:
-        // https://github.com/kangax/html-minifier#options-quick-reference
-      },
-// necessary to consistently work with multiple chunks via CommonsChunkPlugin
-      chunksSortMode: 'dependency'
-    }),
 // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      minChunks: function (module, count) {
+      minChunks(module, count) {
         // any required modules inside node_modules are extracted to vendor
         return (
           module.resource &&
           /\.js$/.test(module.resource) &&
           module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
+            path.join(__dirname, '../node_modules'),
           ) === 0
-        )
-      }
+        );
+      },
     }),
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
-      chunks: ['vendor']
-    })
-  ]
-})
+      chunks: ['vendor'],
+    }),
+  ],
+});
 
-if (config.build.productionGzip) {
-  var CompressionWebpackPlugin = require('compression-webpack-plugin')
+if (webpack_config.build.productionGzip) {
+  const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
-  webpackConfig.plugins.push(
+  webpack_prod_config.plugins.push(
     new CompressionWebpackPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
       test: new RegExp(
-        '\\.(' +
-        config.build.productionGzipExtensions.join('|') +
-        ')$'
+        `\\.(${webpack_config.build.productionGzipExtensions.join('|')})$`
       ),
       threshold: 10240,
-      minRatio: 0.8
-    })
-  )
+      minRatio: 0.8,
+    }),
+  );
 }
 
-module.exports = webpackConfig
+export default webpack_prod_config;

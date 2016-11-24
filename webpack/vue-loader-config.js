@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   loaders: {
     scss: 'vue-style!css!sass'
   },
