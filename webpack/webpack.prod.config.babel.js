@@ -11,7 +11,7 @@ import './webpack_files_inject';
 const env = webpack_config.build.env;
 
 // remove old build files
-//exec('rm -rf dist/assets/js/app.* dist/assets/js/manifest.* dist/assets/js/vendor.*')
+exec('rm -rf dist/assets/js/app.* dist/assets/js/manifest.* dist/assets/js/vendor.*')
 
 const webpack_prod_config = merge(webpack_base_config, {
   devtool: webpack_config.build.productionSourceMap ? '#source-map' : false,
@@ -27,7 +27,6 @@ const webpack_prod_config = merge(webpack_base_config, {
       'process.env': env,
     }),
     new webpack.optimize.UglifyJsPlugin(),
-    // extract css into its own file
 // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

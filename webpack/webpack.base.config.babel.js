@@ -15,7 +15,6 @@ export default {
   devtool: webpack_config.build.productionSourceMap ? '#source-map' : false,
   entry: {
     app: './src/js/app.js',
-    styles: './src/js/style.js',
   },
   output: {
     path: path.resolve(__dirname, '../dist/public'),
@@ -34,9 +33,6 @@ export default {
   resolveLoader: {
     modules: [path.join(__dirname, '../node_modules/')]
   },
-  externals: {
-    'Modernizr': 'Modernizr'
-  },
   module: {
     rules: [
       {
@@ -44,15 +40,6 @@ export default {
         loader: 'babel-loader!eslint-loader',
         include: projectRoot,
         exclude: /node_modules/,
-      },
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        include: projectRoot,
-        loader: ExtractTextPlugin.extract({
-          loader: 'css-loader?sourceMap!sass-loader?sourceMap',
-          fallbackLoader: 'style-loader'
-        }),
       },
       {
         test: /\.json$/,
@@ -79,7 +66,7 @@ export default {
   },
 
   plugins: [
-    new ExtractTextPlugin(utils.assetsPath('css/[name].css')),
+    // copy theme files with webpack
     new CopyFiles([
       {
         context: './src/views/',
@@ -88,11 +75,11 @@ export default {
         ignore: ['site-header.html', 'site-scripts.html'],
       }
     ]),
+    // write copied files to disk in dev mode
     new WriteFilePlugin(),
     new LodashModuleReplacementPlugin(),
     new webpack.LoaderOptionsPlugin({
       options: {
-        context: './dist/public/assets/',
         eslint: {
           failOnError: false,
           failOnWarning: false,

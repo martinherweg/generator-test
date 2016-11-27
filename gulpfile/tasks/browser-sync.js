@@ -16,7 +16,7 @@ import yargs from 'yargs';
 const argv = yargs.argv;
 const env = argv.env || 'development';
 
-if(env === 'development') {
+if(env === 'browser-sync') {
   const bundler = webpack(webpackSettings);
 
   const browserSyncTask = () => {
@@ -27,7 +27,7 @@ if(env === 'development') {
         forms: true,
         scroll: false,
       },
-      logLevel: 'debug',
+      logLevel: 'info',
       watchTask: true,
       open: false,
       stream: true,
@@ -48,8 +48,7 @@ if(env === 'development') {
         config.src.base + config.src.views + '**/*',
         config.dist.views + '**/*.{php,html,twig}',
         config.dist.dist + config.dist.images.base + '**/*.{jpg,png,gif,svg}',
-        config.dist.dist + config.dist.css + '**/*',
-        path.resolve(__dirname, '../../dist/public/assets/**/*.{css}'),
+        config.dist.dist + config.dist.css + '**/*'
       ],
       injectFileTypes: ['css']
     })

@@ -14,12 +14,11 @@ Object.keys(webpack_base_config.entry).forEach((name) => {
 
 export default merge(webpack_base_config, {
   // eval-source-map is faster for development
-  devtool: '#source-map',
+  devtool: '#eval-source-map',
   plugins: [
     new webpack.DefinePlugin({
       'process.env': webpack_config.dev.env,
     }),
-    // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new Dashboard_plugin({ port: 3002 }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
