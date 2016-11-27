@@ -4,6 +4,7 @@
  */
 
 import config from '../../config.json';
+import path from 'path';
 import gulp from 'gulp';
 import browserSync from 'browser-sync';
 import webpack from 'webpack';
@@ -20,13 +21,13 @@ if(env === 'development') {
 
   const browserSyncTask = () => {
     browserSync({
-      proxy: config.proxy,
+      proxy: 'generator-new.dev',
       ghostMode: {
         clicks: true,
         forms: true,
         scroll: false,
       },
-      logLevel: 'info',
+      logLevel: 'debug',
       watchTask: true,
       open: false,
       stream: true,
@@ -35,6 +36,7 @@ if(env === 'development') {
       },
       middleware: [
         webpackDevMiddleware(bundler, {
+          path: webpackSettings.output.path,
           publicPath: webpackSettings.output.publicPath,
           stats: {
             colors: true
@@ -43,11 +45,15 @@ if(env === 'development') {
         webpackHotMiddleware(bundler)
       ],
       files: [
+        config.src.base + config.src.views + '**/*',
         config.dist.views + '**/*.{php,html,twig}',
         config.dist.dist + config.dist.images.base + '**/*.{jpg,png,gif,svg}',
-        config.dist.dist + config.dist.css + '**/*.css',
-      ]
+        config.dist.dist + config.dist.css + '**/*',
+        path.resolve(__dirname, '../../dist/public/assets/**/*.{css}'),
+      ],
+      injectFileTypes: ['css']
     })
+
   }
 
 

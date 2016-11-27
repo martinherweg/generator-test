@@ -6,19 +6,16 @@ import webpack_base_config from './webpack.base.config.babel';
 
   const chunks_inject = [
     {
-      filename: 'document-header.html',
+      filename: '../craft/templates/parts/document-header.html',
       file: config.src.base + config.src.views + 'parts/site-header.html',
       inject: false
     },
     {
-      filename: 'document-footer.html',
+      filename: '../craft/templates/parts/document-footer.html',
       file: config.src.base + config.src.views + 'parts/site-scripts.html',
       inject: false
     }
   ]
-
-  const deploy_url = '{{ siteUrl }}';
-
 
 
 // inject HtmlWebpackPlugin into baseConfig

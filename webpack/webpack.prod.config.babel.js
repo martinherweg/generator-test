@@ -11,16 +11,13 @@ import './webpack_files_inject';
 const env = webpack_config.build.env;
 
 // remove old build files
-exec('rm -rf dist/assets/js/app.* dist/assets/js/manifest.* dist/assets/js/vendor.*')
-
-const css_loaders = utils.cssLoaders({ extract: true});
-
-webpack_base_config.module.rules.push(css_loaders);
+//exec('rm -rf dist/assets/js/app.* dist/assets/js/manifest.* dist/assets/js/vendor.*')
 
 const webpack_prod_config = merge(webpack_base_config, {
   devtool: webpack_config.build.productionSourceMap ? '#source-map' : false,
   output: {
     path: webpack_config.build.assetsRoot,
+    publicPath: webpack_config.build.assetsPublicPath,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js'),
   },
@@ -31,7 +28,6 @@ const webpack_prod_config = merge(webpack_base_config, {
     }),
     new webpack.optimize.UglifyJsPlugin(),
     // extract css into its own file
-    new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash].css')),
 // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

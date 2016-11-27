@@ -12,9 +12,6 @@ Object.keys(webpack_base_config.entry).forEach((name) => {
   webpack_base_config.entry[name] = ['./webpack/webpack_dev-client.js'].concat(webpack_base_config.entry[name]);
 });
 
-const css_loaders = utils.cssLoaders();
-webpack_base_config.module.rules.push(css_loaders);
-
 export default merge(webpack_base_config, {
   // eval-source-map is faster for development
   devtool: '#eval-source-map',

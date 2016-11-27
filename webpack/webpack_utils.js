@@ -15,7 +15,6 @@ export function cssLoaders(options) {
   function generateLoaders (loaders) {
     const sourceLoader = loaders.map(loader => {
       let extraParamChar;
-      console.log(loader, /\?/.test(loader));
       if (/\?/.test(loader)) {
         loader = loader.replace(/\?/, '-loader?')
         extraParamChar = '&'
