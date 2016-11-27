@@ -48,8 +48,6 @@ if(env === 'development') {
         config.src.base + config.src.views + '**/*',
         config.dist.views + '**/*.{php,html,twig}',
         config.dist.dist + config.dist.images.base + '**/*.{jpg,png,gif,svg}',
-        config.dist.dist + config.dist.css + '**/*',
-        path.resolve(__dirname, '../../dist/public/assets/**/*.{css}'),
       ],
       injectFileTypes: ['css']
     })
