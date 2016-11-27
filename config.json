@@ -91,7 +91,7 @@
     "dist"       : {
     
         "dist"     : "dist/public/",
-        "views"    : "dist/templates/",
+        "views"    : "dist/craft/templates/",
         "systemFiles": "dist/public/",
         "css"      : "assets/css/",
         "favicons": "favicons/",
