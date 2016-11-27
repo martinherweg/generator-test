@@ -8,7 +8,8 @@
     "url": "http://..."
   },
   "scripts": {
-    "webpack": "babel-node webpack/webpack_build"
+    "webpack": "babel-node webpack/webpack_build",
+    "webpack:css": "gulp browser-sync"
   },
   "repository": "http://...",
   "devDependencies": {
