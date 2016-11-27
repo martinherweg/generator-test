@@ -10,11 +10,12 @@ import webpack_config from './webpack_config';
 import * as utils from './webpack_utils';
 
 const projectRoot = path.resolve(__dirname, '../');
+
 export default {
-  devtool: 'source-map',
-  context: path.join(projectRoot),
+  devtool: webpack_config.build.productionSourceMap ? '#source-map' : false,
   entry: {
     app: './src/js/app.js',
+    styles: './src/js/style.js',
   },
   output: {
     path: path.resolve(__dirname, '../dist/public'),
@@ -40,9 +41,18 @@ export default {
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loader: 'babel-loader!eslint-loader',
         include: projectRoot,
         exclude: /node_modules/,
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        include: projectRoot,
+        loader: ExtractTextPlugin.extract({
+          loader: 'css-loader?sourceMap!sass-loader?sourceMap',
+          fallbackLoader: 'style-loader'
+        }),
       },
       {
         test: /\.json$/,
@@ -69,6 +79,7 @@ export default {
   },
 
   plugins: [
+    new ExtractTextPlugin(utils.assetsPath('css/[name].css')),
     new CopyFiles([
       {
         context: './src/views/',
@@ -81,6 +92,7 @@ export default {
     new LodashModuleReplacementPlugin(),
     new webpack.LoaderOptionsPlugin({
       options: {
+        context: './dist/public/assets/',
         eslint: {
           failOnError: false,
           failOnWarning: false,

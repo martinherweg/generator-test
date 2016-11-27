@@ -14,7 +14,7 @@ Object.keys(webpack_base_config.entry).forEach((name) => {
 
 export default merge(webpack_base_config, {
   // eval-source-map is faster for development
-  devtool: '#eval-source-map',
+  devtool: '#source-map',
   plugins: [
     new webpack.DefinePlugin({
       'process.env': webpack_config.dev.env,
