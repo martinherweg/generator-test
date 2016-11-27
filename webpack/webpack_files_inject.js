@@ -1,5 +1,6 @@
 import config from '../config.json';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import WriteFilePlugin from 'write-file-webpack-plugin';
 import webpack_base_config from './webpack.base.config.babel';
 
 // define parts where webpack files get injected
@@ -31,5 +32,9 @@ chunks_inject.forEach((chunk) => {
 // necessary to consistently work with multiple chunks via CommonsChunkPlugin
     chunksSortMode: 'dependency',
   })
-  webpack_base_config.plugins.push(plugin)
+
+  const write_plugin = new WriteFilePlugin();
+
+  webpack_base_config.plugins.push(plugin);
+  webpack_base_config.plugins.push(write_plugin);
 })

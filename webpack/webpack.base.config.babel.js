@@ -2,8 +2,6 @@ import path from 'path';
 import webpack from 'webpack';
 import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-
-import WriteFilePlugin from 'write-file-webpack-plugin';
 import CopyFiles from 'copy-webpack-plugin';
 
 import webpack_config from './webpack_config';
@@ -66,17 +64,6 @@ export default {
   },
 
   plugins: [
-    // copy theme files with webpack
-    new CopyFiles([
-      {
-        context: './src/views/',
-        from: '**/*',
-        to: '../craft/templates',
-        ignore: ['site-header.html', 'site-scripts.html'],
-      }
-    ]),
-    // write copied files to disk in dev mode
-    new WriteFilePlugin(),
     new LodashModuleReplacementPlugin(),
     new webpack.LoaderOptionsPlugin({
       options: {

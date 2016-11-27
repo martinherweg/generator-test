@@ -7,7 +7,7 @@ import path from 'path';
 const $ = gulpLoadPlugins();
 
 const paths = {
-  src: `${config.src.base}${config.src.views}**/*`,
+  src: `${config.src.base + config.src.views}**/*`,
   dest: `${config.dist.views}`
 }
 
