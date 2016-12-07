@@ -11,8 +11,7 @@
     "webpack": "babel-node webpack/webpack_build",
     "sync": "gulp --env=browser-sync",
     "webpack:css": "gulp browser-sync",
-    "compile:css": "gulp compile:css",
-    "move:views": "gulp move:views"
+    "gulp": "gulp"
   },
   "repository": "http://...",
   "devDependencies": {
@@ -29,6 +28,7 @@
     "babel-runtime": "^6.9.0",
     "browser-sync": "^2.17.5",
     "bs-fullscreen-message": "^1.1.0",
+    "chalk": "^1.1.3",
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^3.1.3",
     "css-loader": "^0.25.0",
@@ -51,6 +51,7 @@
     "gulp-changed": "^1.3.2",
     "gulp-cssnano": "^2.1.2",
     "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.1.1",
     "gulp-load-plugins": "^1.4.0",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.1.0",
