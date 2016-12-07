@@ -9,12 +9,12 @@
 {% set assetsPath = craft.config.environmentVariables.assetsPath %}
 {% set assetsUrl = craft.config.environmentVariables.assetsUrl %}
 <!DOCTYPE html>
-    {% include 'parts/site-header' %}
+    {% include 'parts/document-header' %}
 
 <main id="content" role="main">
     {% block content %}{% endblock %}
 </main>
 
-{% include 'parts/site-scripts' %}
+{% include 'parts/document-footer' %}
 </body>
 </html>
