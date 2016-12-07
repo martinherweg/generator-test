@@ -90,7 +90,7 @@
     },
     "dist"       : {
     
-        "dist"     : "dist/public/",
+        "base"     : "dist/public/",
         "views"    : "dist/craft/templates/",
         "systemFiles": "dist/public/",
         "css"      : "assets/css/",
