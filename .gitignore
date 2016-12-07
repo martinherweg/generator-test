@@ -89,3 +89,12 @@ README.html
 ##### design files #####
 *.psd
 .idea
+/dist/config/db.php
+/package.json
+/src/js/app.js
+/src/scss/app.scss
+/src/images
+/src/views/index.html
+/yarn.lock
+/dist/readme.txt
+/src/views/layout/_layout.html
