@@ -21,7 +21,10 @@ if(env === 'browser-sync') {
 
   const browserSyncTask = () => {
     browserSync({
-      proxy: 'generator-new.dev',
+      proxy: {
+        target: 'generator-new.dev',
+        ws: true
+      },
       ghostMode: {
         clicks: true,
         forms: true,
