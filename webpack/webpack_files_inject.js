@@ -33,7 +33,9 @@ chunks_inject.forEach((chunk) => {
     chunksSortMode: 'dependency',
   })
 
-  const write_plugin = new WriteFilePlugin();
+  const write_plugin = new WriteFilePlugin({
+    log: false
+  });
 
   webpack_base_config.plugins.push(plugin);
   webpack_base_config.plugins.push(write_plugin);
