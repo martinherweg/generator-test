@@ -1,3 +1,10 @@
+/**
+ * Compile SCSS Files
+ * if in dev Mode Create Sourcemaps and Lint with Stylelint
+ * also Run PostCSS defined in ../lib/postCSS_config.js and minify with CSS Nano if in Production Modee
+ */
+
+
 import config from '../../config.json';
 import gulp from 'gulp';
 import path from 'path';

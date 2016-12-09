@@ -1,3 +1,7 @@
+/**
+ * Default task run Browser Sync and Watch
+ */
+
 import gulp from 'gulp';
 import run_sequence from 'run-sequence';
 

@@ -1,3 +1,8 @@
+/**
+* Copies Images from images/cssimages and images/htmlimages in the images folder in dist
+* Also they are getting minified
+*/
+
 import config from '../../config.json';
 
 import gulp from 'gulp';

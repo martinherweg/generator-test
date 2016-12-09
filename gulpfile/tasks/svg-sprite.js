@@ -1,3 +1,7 @@
+/**
+ * Create SVG Sprite File with symbols and a SCSS File to use with background images
+ */
+
 import config from '../../config.json';
 
 import gulp from 'gulp';

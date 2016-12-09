@@ -1,6 +1,7 @@
 /**
  * Browser Sync
  * @description Refresh the Brwoser after File Change.
+ * Combined with webpack for HMR or Content Reload
  */
 
 import config from '../../config.json';
@@ -22,7 +23,7 @@ if(env === 'browser-sync') {
   const browserSyncTask = () => {
     browserSync({
       proxy: {
-        target: 'generator-new.dev',
+        target: config.proxy,
         ws: true
       },
       ghostMode: {

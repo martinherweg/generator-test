@@ -1,3 +1,6 @@
+/**
+ * Just copy Template Files to Dist
+ */
 import config from '../../config.json';
 
 import gulp from 'gulp';
