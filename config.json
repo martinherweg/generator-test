@@ -1,6 +1,6 @@
 {
     
-    "proxy"      : "", 
+    "proxy"      : "generator-new.dev",
     "projectType": "Craft",
     "favicon": {
         "appName"       : "My App",

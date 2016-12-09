@@ -23,7 +23,15 @@ const compileCss = () => {
   const env = argv.env || 'development'
   return gulp
     .src(paths.src)
-    .pipe($.if(env === 'development', $.sourcemaps.init()))
+    .pipe($.if(env === 'development' || env === 'browser-sync', $.sourcemaps.init()))
+    .pipe($.if(env === 'development' || env === 'browser-sync', $.postcss([
+      require('stylelint'),
+      require('postcss-reporter')({ clearMessages: true }),
+    ],
+      {
+        syntax: require('postcss-scss'),
+      },
+    )))
     .pipe($.sass())
     .on('error', function(err) {
       const error = `
@@ -37,7 +45,7 @@ ${err.message}
       this.emit('end');
     })
     .pipe($.postcss(postCSS_config()))
-    .pipe($.if(env === 'development', $.sourcemaps.write('.')))
+    .pipe($.if(env === 'development' || env === 'browser-sync', $.sourcemaps.write('.')))
     .pipe($.if(env === 'production', $.postcss(postCSS_nano())))
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.stream({
